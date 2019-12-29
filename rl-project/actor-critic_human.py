@@ -74,6 +74,7 @@ class ValueEstimator():
     def __init__(self, learning_rate=0.1, scope="value_estimator"):
         with tf.variable_scope(scope):
             self.state = tf.placeholder(tf.float32, [376], "state")
+            print(self.state.shape)
             self.target = tf.placeholder(dtype=tf.float32, name="target")
 
             # This is just linear classifier
@@ -122,6 +123,7 @@ def actor_critic(env, estimator_policy, estimator_value, num_episodes, discount_
 
             # Take a step
             action = estimator_policy.predict(state)
+            #print(action.shape)
             next_state, reward, done, _ = env.step(action)
 
             # Keep track of the transition
@@ -149,6 +151,8 @@ def actor_critic(env, estimator_policy, estimator_value, num_episodes, discount_
                 break
 
             state = next_state
+        #if i_episode!=0 and i_episode%5000==0:
+        #    plotting.plot_episode_stats(stats, smoothing_window=10)
 
     return stats
 
@@ -161,7 +165,7 @@ value_estimator = ValueEstimator(learning_rate=0.1)
 
 with tf.Session() as sess:
     sess.run(tf.initialize_all_variables())
-    stats = actor_critic(env, policy_estimator, value_estimator, 1000, discount_factor=0.95)
+    stats = actor_critic(env, policy_estimator, value_estimator, 50000, discount_factor=0.95)
 
 
 plotting.plot_episode_stats(stats, smoothing_window=10)

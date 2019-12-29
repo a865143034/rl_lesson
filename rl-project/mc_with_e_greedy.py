@@ -75,6 +75,7 @@ def mc_control_epsilon_greedy(env, num_episodes, discount_factor=1.0, epsilon=0.
     policy = make_epsilon_greedy_policy(Q, epsilon, env.action_space.n)
 
     for i_episode in range(1, num_episodes + 1):
+        print(i_episode)
         #可以去掉，便于debug
         if i_episode % 1000 == 0:
             print("\rEpisode {}/{}.".format(i_episode, num_episodes), end="")
@@ -119,3 +120,4 @@ for state, actions in Q.items():
     action_value = np.max(actions)
     V[state] = action_value
 plotting.plot_value_function(V, title="Optimal Value Function")
+

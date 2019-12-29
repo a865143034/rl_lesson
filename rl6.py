@@ -12,3 +12,9 @@ print(env.observation_space.low)
 
 import tensorflow as tf
 print(tf.__version__)
+import tensorflow as tf
+import numpy as np
+
+a=np.array([1,2,4,5,3])
+a=a.reshape([1,6])
+print(a)

@@ -9,11 +9,12 @@ env=gym.make("Humanoid-v2")
 #env = gym.make('BreakoutNoFrameskip-v4')
 #env=CliffWalkingEnv()
 #print(env.observation_space.n)
-'''
+
 for i_episode in range(1):
     observation = env.reset()
+    print(observation.shape)
     print(observation)
-    env.render()
+    #env.render()
     #print(observation.shape)
     #print(observation)
     for step in range(10000):
@@ -24,10 +25,3 @@ for i_episode in range(1):
         if done:
             print("Episode finished after {} timesteps".format(step+1))
             break
-'''
-
-import numpy as np
-a=np.array([[3,2],[2,3]])
-print(a)
-b=a.reshape([1,4])
-print(b)
